@@ -48,11 +48,30 @@ if(User){
 })
 
 router.post('/courses' ,adminMiddleware,async (req,res)=>{
-  
+    const title = req.body.title;
+    const imgLink = req.body.imgLink;
+    const description =req.body.description;
+    const price = req.body.price;
+
+const newCourse =  await  Course.create({
+        title,
+        imgLink,
+        description,
+        price
+    })
+
+    res.json({
+        msg:"Course created successfully",courseId: newCourse._id
+    })
 })
+
 
 router.get("/courses",adminMiddleware,async (req,res)=>{
  
-})
+    const response = await Course.find({});
 
+    res.json({
+        Course:response
+    })
+})
 module.exports = router;
