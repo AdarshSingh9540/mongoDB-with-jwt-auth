@@ -28,9 +28,7 @@ const isValidated  = await User.find({
     username,
     password
 })
-if(User){
-    
-}
+
 
 if(User){
     const token =  jwt.sign({

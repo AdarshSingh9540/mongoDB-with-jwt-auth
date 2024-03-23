@@ -7,6 +7,7 @@ function adminMiddleware (req,res,next){
     // const words = token.spilt(" ");
     // const jwtToken = words[1];
 
+   try{
     const decodedValue = jwt.verify(token,key);
     if(decodedValue.username){
         next();
@@ -15,6 +16,11 @@ function adminMiddleware (req,res,next){
             msg:"You are not authenticated"
         })
     }
+   }catch(e){
+    res.json({
+        msg:"Incorrect details Try again"
+    })
+   }
 
 }
 
